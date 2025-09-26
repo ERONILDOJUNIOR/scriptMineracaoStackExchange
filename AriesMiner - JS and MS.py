@@ -12,8 +12,8 @@ API_KEY = "rl_Rzzb6ghSHRGYESZAr8ANM78QX"
 
 params = {
     "site": "stackoverflow",
-    "tagged": "javascript",         # só perguntas com a tag JS
-    "pagesize": 100,          # máximo por página
+    "tagged": "microservices;testing",  # tags desejadas
+    "pagesize": 100,          
     "order": "desc",
     "sort": "creation",       # pode mudar para "votes"
     "filter": "withbody",     # traz o corpo da pergunta
@@ -22,9 +22,6 @@ params = {
 
 all_results = []
 page = 1
-
-# Expressões típicas de testes JS
-padroes = re.compile(r"\b(expect|verify|test\s*\()", re.IGNORECASE)
 
 while True:
     print(f"📥 Buscando página {page}...")
@@ -42,21 +39,19 @@ while True:
 
         # Extrair todos blocos <code>
         blocos_codigo = [code.get_text() for code in soup.find_all("code")]
-        codigo_unido = "\n".join(blocos_codigo)
 
-        # Verificar se contém padrões de teste
-        if padroes.search(codigo_unido):
-            resultado = {
-                "titulo": item.get("title"),
-                "score": item.get("score"),
-                "views": item.get("view_count"),
-                "respostas": item.get("answer_count"),
-                "tags": item.get("tags"),
-                "link": item.get("link"),
-                "conteudo_html": corpo_html,
-                "codigo": blocos_codigo
-            }
-            all_results.append(resultado)
+        # Salvar todos os resultados, sem filtrar por regex
+        resultado = {
+            "titulo": item.get("title"),
+            "score": item.get("score"),
+            "views": item.get("view_count"),
+            "respostas": item.get("answer_count"),
+            "tags": item.get("tags"),
+            "link": item.get("link"),
+            "conteudo_html": corpo_html,
+            "codigo": blocos_codigo
+        }
+        all_results.append(resultado)
 
     # Se não tem mais páginas, para
     if not data.get("has_more", False):

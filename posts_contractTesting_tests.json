@@ -1,0 +1,320 @@
+[
+    {
+        "titulo": "How to run pact cdc contract tests parallel?",
+        "score": 0,
+        "views": 56,
+        "respostas": 0,
+        "tags": [
+            "testing",
+            "provider",
+            "pact",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/79286608/how-to-run-pact-cdc-contract-tests-parallel",
+        "conteudo_html": "<p>I write cdc provider tests with pact provider.</p>\n<pre><code>@Provider(&quot;i-api&quot;)\n@PactBroker(url = &quot;https://pact.h.com&quot;)\n@ExtendWith(PactVerificationInvocationContextProvider.class)\npublic class ProviderContractEventsTest {\n\n    public ObjectMapper mapper = new ObjectMapper();\n\n    public JFixture fixture = new JFixture();\n\n\n    @TestTemplate\n    @ExtendWith(PactVerificationInvocationContextProvider.class)\n    void pactVerificationTestTemplate(PactVerificationContext context) {\n        context.verifyInteraction();\n    }\n    @BeforeEach\n    public void before(PactVerificationContext context) {\n        fixture.customise().repeatCount(1);\n        context.setTarget(new MessageTestTarget());\n    }\n    @State(&quot;x&quot;)\n    @PactVerifyProvider(&quot;y&quot;)\n    public String d() throws JsonProcessingException {\n        var domain = fixture.create(GMessage.class);\n        domain.setItems(Collections.singletonList(fixture.create(GMessage.class)));\n        return mapper.writeValueAsString(domain);\n    }\n    @State(&quot;z&quot;)\n    @PactVerifyProvider(&quot;t&quot;)\n    public String e() throws JsonProcessingException {\n        var domain = fixture.create(FMessage.class);\n        return mapper.writeValueAsString(domain);\n    }\n}\n</code></pre>\n<p>I run the tests with below terminal code:\nmvn clean test -Dtest=&quot;com.c.t.contract.tests.**&quot;\nI want to verify all states together as my provider test counts almost 90 and it increases pipeline time. How to do it ?</p>\n",
+        "codigo": [
+            "@Provider(\"i-api\")\n@PactBroker(url = \"https://pact.h.com\")\n@ExtendWith(PactVerificationInvocationContextProvider.class)\npublic class ProviderContractEventsTest {\n\n    public ObjectMapper mapper = new ObjectMapper();\n\n    public JFixture fixture = new JFixture();\n\n\n    @TestTemplate\n    @ExtendWith(PactVerificationInvocationContextProvider.class)\n    void pactVerificationTestTemplate(PactVerificationContext context) {\n        context.verifyInteraction();\n    }\n    @BeforeEach\n    public void before(PactVerificationContext context) {\n        fixture.customise().repeatCount(1);\n        context.setTarget(new MessageTestTarget());\n    }\n    @State(\"x\")\n    @PactVerifyProvider(\"y\")\n    public String d() throws JsonProcessingException {\n        var domain = fixture.create(GMessage.class);\n        domain.setItems(Collections.singletonList(fixture.create(GMessage.class)));\n        return mapper.writeValueAsString(domain);\n    }\n    @State(\"z\")\n    @PactVerifyProvider(\"t\")\n    public String e() throws JsonProcessingException {\n        var domain = fixture.create(FMessage.class);\n        return mapper.writeValueAsString(domain);\n    }\n}\n"
+        ]
+    },
+    {
+        "titulo": "Pact file publishing error: can_i_deploy_long_desc.txt not found in pact-workshop-js (Step 11)",
+        "score": 0,
+        "views": 46,
+        "respostas": 0,
+        "tags": [
+            "testing",
+            "pact",
+            "contract",
+            "pact-broker"
+        ],
+        "link": "https://stackoverflow.com/questions/79045237/pact-file-publishing-error-can-i-deploy-long-desc-txt-not-found-in-pact-worksho",
+        "conteudo_html": "<p>I am working through the pact-workshop-js tutorial. In Step 11, after testing the consumer and trying to publish the pact file, I encounter the following error:</p>\n<blockquote>\n<p>C:/pact-workshop-js/consumer/node_modules/@pact-foundation/pact-core/standalone/windows-x64-2.0.3/pact/lib/vendor/ruby/3.2.0/gems/pact_broker-client-1.68.0/lib/pact_broker/client/cli/matrix_commands.rb:9:in\n`read': No such file or directory @ rb_sysopen</p>\n</blockquote>\n<ul>\n<li>C:/pact-workshop-js/consumer/node_modules/@pact-foundation/pact-core/standalone/windows-x64-2.0.3/pact/lib/vendor/ruby/3.2.0/gems/pact_broker-client-1.68.0/lib/pact_broker/client/cli/can_i_deploy_long_desc.txt (Errno::ENOENT)</li>\n</ul>\n<p>The error suggests that the file can_i_deploy_long_desc.txt is missing. I am using the same Node.js version and pact libraries as my friend, and they can successfully publish the pact file on their machine.</p>\n<p>What I’ve tried:</p>\n<ul>\n<li>Reinstalling dependencies (npm install after deleting node_modules and package-lock.json).</li>\n<li>Checking file permissions on the node_modules folder.</li>\n<li>Disabling antivirus to ensure no files are being quarantined.</li>\n<li>Testing on different Node.js versions, but the issue persists.</li>\n<li>Comparing my setup with my friend's setup, but couldn't find any significant differences.</li>\n</ul>\n<p>Environment:\nOS: Windows 11\nNode.js: v20.17.0 (same as friend)\npact-broker-client: same as pact-workshop-js</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "Clarinet test command throws error in terminal",
+        "score": 0,
+        "views": 73,
+        "respostas": 1,
+        "tags": [
+            "unit-testing",
+            "testing",
+            "terminal",
+            "command",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/77963597/clarinet-test-command-throws-error-in-terminal",
+        "conteudo_html": "<p>during clarinet contract test if i am trying to  give command like <strong>clarinet.test</strong> it is throwing error like below. Can any one advise me to solve this issue? Please refer below image and advise</p>\n<p><a href=\"https://i.sstatic.net/6AxbL.png\" rel=\"nofollow noreferrer\">enter image description here</a></p>\n<p>Need a solution to my query to test contracts in clarinet.</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "Pact vs Spring Cloud Contract vs Karate",
+        "score": 1,
+        "views": 1253,
+        "respostas": 0,
+        "tags": [
+            "testing",
+            "karate",
+            "pact",
+            "contract",
+            "spring-cloud-contract"
+        ],
+        "link": "https://stackoverflow.com/questions/70766269/pact-vs-spring-cloud-contract-vs-karate",
+        "conteudo_html": "<p>I'm trying to figure out the best tool for the contract testing. My scenario is quite simple. I have to implement contract testing specifically for front end talking to backend APIs.(client to REST APIs). I've done a POC on PACT already and I find PACT pretty useful, but I want to make sure I'm not missing out good features provided by other tools.</p>\n<p>Major features I'm interested in from Pact:</p>\n<ol>\n<li>can I deploy</li>\n<li>Pending pacts when pact changes</li>\n<li>webhooks</li>\n</ol>\n<p>If you can please direct me to some valid reasons for considering or avoiding SCC or Karate, it would be really helpful.</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "Cannot make Cypress and Pact work together",
+        "score": 0,
+        "views": 1192,
+        "respostas": 1,
+        "tags": [
+            "javascript",
+            "testing",
+            "cypress",
+            "pact",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/68455650/cannot-make-cypress-and-pact-work-together",
+        "conteudo_html": "<p>I already have working project with few passing Cypress tests.\nNow I'm trying to add contract tests using Cypress + Pact</p>\n<p>In developer console I can see that app is calling <code>/api/v1/document-service</code>, but I get:</p>\n<blockquote>\n<p>Pact verification failed - expected interactions did not match actual.</p>\n</blockquote>\n<p>Part of logs:</p>\n<pre><code>W, [2021-07-20T12:49:37.157389 #34805]  WARN -- : Verifying - actual interactions do not match expected interactions.\n\nMissing requests:\n    POST /api/v1/document-service\n\nW, [2021-07-20T12:49:37.157489 #34805]  WARN -- : Missing requests:\n    POST /api/v1/document-service\n</code></pre>\n<p>I'm using:</p>\n<pre><code>  cypress: 7.5.0\n  @pact-foundation/pact: 9.16.0\n</code></pre>\n<p>Steps I've done:</p>\n<ol>\n<li><p>Added cypress plugin (<a href=\"https://github.com/pactflow/example-consumer-cypress/blob/master/cypress/plugins/cypress-pact.js\" rel=\"nofollow noreferrer\">https://github.com/pactflow/example-consumer-cypress/blob/master/cypress/plugins/cypress-pact.js</a>)</p>\n</li>\n<li><p>Added commands (<a href=\"https://github.com/pactflow/example-consumer-cypress/blob/master/cypress/support/commands.js\" rel=\"nofollow noreferrer\">https://github.com/pactflow/example-consumer-cypress/blob/master/cypress/support/commands.js</a>)</p>\n</li>\n<li><p>Added config to cypress.json (<a href=\"https://github.com/pactflow/example-consumer-cypress/blob/master/cypress.json\" rel=\"nofollow noreferrer\">https://github.com/pactflow/example-consumer-cypress/blob/master/cypress.json</a>) - not sure what to put to baseUrl, if I don't want interactions with real server.</p>\n</li>\n<li><p>Added test:</p>\n<pre><code>let server;\n\ndescribe('Simple', () =&gt; {\n    before(() =&gt; {\n        cy.mockServer({\n            consumer: 'example-cypress-consumer',\n            provider: 'pactflow-example-provider',\n        }).then(opts =&gt; {\n            cy.log(opts)\n            server = opts\n        })\n    });\n\n    beforeEach(() =&gt; {\n        cy.fakeLogin()\n\n        cy.addMockRoute({\n            server,\n            as: 'products',\n            state: 'products exist',\n            uponReceiving: 'a request to all products',\n            withRequest: {\n                method: 'POST',\n                path: '/api/v1/document-service',\n            },\n            willRespondWith: {\n                status: 200,\n                body: {\n                    data: {\n                        collections: [\n                            {\n                                id: '954',\n                                name: 'paystubs',\n                            },\n                            {\n                                id: '1607',\n                                name: 'mystubs',\n                            },\n                        ],\n                    },\n                },\n            },\n        });\n    });\n    it('is ok?', () =&gt; {\n        cy.visit('/new/experiments/FirstProject/collections');\n    });\n})\n</code></pre>\n</li>\n</ol>\n<p>Tried both using deprecated <code>cy.server()</code>/<code>cy.route()</code> and new <code>cy.intercept()</code>, but still verification failures.</p>\n",
+        "codigo": [
+            "/api/v1/document-service",
+            "W, [2021-07-20T12:49:37.157389 #34805]  WARN -- : Verifying - actual interactions do not match expected interactions.\n\nMissing requests:\n    POST /api/v1/document-service\n\nW, [2021-07-20T12:49:37.157489 #34805]  WARN -- : Missing requests:\n    POST /api/v1/document-service\n",
+            "  cypress: 7.5.0\n  @pact-foundation/pact: 9.16.0\n",
+            "let server;\n\ndescribe('Simple', () => {\n    before(() => {\n        cy.mockServer({\n            consumer: 'example-cypress-consumer',\n            provider: 'pactflow-example-provider',\n        }).then(opts => {\n            cy.log(opts)\n            server = opts\n        })\n    });\n\n    beforeEach(() => {\n        cy.fakeLogin()\n\n        cy.addMockRoute({\n            server,\n            as: 'products',\n            state: 'products exist',\n            uponReceiving: 'a request to all products',\n            withRequest: {\n                method: 'POST',\n                path: '/api/v1/document-service',\n            },\n            willRespondWith: {\n                status: 200,\n                body: {\n                    data: {\n                        collections: [\n                            {\n                                id: '954',\n                                name: 'paystubs',\n                            },\n                            {\n                                id: '1607',\n                                name: 'mystubs',\n                            },\n                        ],\n                    },\n                },\n            },\n        });\n    });\n    it('is ok?', () => {\n        cy.visit('/new/experiments/FirstProject/collections');\n    });\n})\n",
+            "cy.server()",
+            "cy.route()",
+            "cy.intercept()"
+        ]
+    },
+    {
+        "titulo": "Rewriting Pact contract test from JavaScript to C#",
+        "score": 0,
+        "views": 561,
+        "respostas": 1,
+        "tags": [
+            "c#",
+            "testing",
+            "pact",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/65595321/rewriting-pact-contract-test-from-javascript-to-c",
+        "conteudo_html": "<p>Apologies if this question is greaking the rules.</p>\n<p>I have this <code>js</code> class:</p>\n<p>src/get.js</p>\n<pre class=\"lang-js prettyprint-override\"><code>const { get } = require('axios')\n\nmodule.exports = function () {\n    return get(`http://localhost:1234/token/1234`)\n}\n</code></pre>\n<p>and also this test:</p>\n<p>consumer.pact.js</p>\n<pre class=\"lang-js prettyprint-override\"><code>const path = require(&quot;path&quot;)\nconst chai = require(&quot;chai&quot;)\nconst { Pact, Matchers } = require(&quot;@pact-foundation/pact&quot;)\nconst chaiAsPromised = require(&quot;chai-as-promised&quot;)\nconst expect = chai.expect\nchai.use(chaiAsPromised)\nconst { string } = Matchers\nconst get = require('../src/get')\n\ndescribe('Consumer Test', () =&gt; {\n    const provider = new Pact({\n        consumer: &quot;React&quot;,\n        provider: &quot;token&quot;,\n        port: 1234,\n        log: path.resolve(process.cwd(), 'logs', 'pact.log'),\n        dir: path.resolve(process.cwd(), 'pacts'),\n        logLevel: &quot;INFO&quot;\n    });\n\n    before(() =&gt; provider.setup()\n    .then(() =&gt; provider.addInteraction({\n        state: &quot;user token&quot;,\n        uponReceiving: &quot;GET user token&quot;,\n        withRequest: {\n            method: &quot;GET&quot;,\n            path: &quot;/token/1234&quot;,\n            headers: { Accept: &quot;application/json, text/plain, */*&quot; }\n        },\n        willRespondWith: {\n            headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },\n            status: 200,\n            body: { &quot;token&quot;: string(&quot;bearer&quot;) }\n        }\n    })))\n\n    it('OK response', () =&gt; {\n        get()\n        .then((response) =&gt; {\n            expect(response.statusText).to.be.equal('OK')\n        })\n    })\n\n    after(() =&gt; provider.finalize())\n})\n</code></pre>\n<p>I'm trying to write the equivalent in C# using the <code>js</code> code and the example <a href=\"https://github.com/pact-foundation/pact-net\" rel=\"nofollow noreferrer\">here</a>. I've done all except the <code>GET</code> and admittedly, what I've done so far might be way off. Here's what I have so far:</p>\n<p>ConsumerTest.cs</p>\n<pre><code>//using NUnit.Framework;\nusing System.Collections.Generic;\nusing PactNet;\nusing PactNet.Mocks.MockHttpService;\nusing PactNet.Mocks.MockHttpService.Models;\nusing Xunit;\n\nnamespace PactTests.PactTests\n{\n  public class ConsumerTest : IClassFixture&lt;ConsumerPact&gt;\n  {\n    private IMockProviderService _mockProviderService;\n    private string _mockProviderServiceBaseUri;\n\n    public ConsumerTest(ConsumerPact data)\n    {\n      _mockProviderService = data.MockProviderService;\n      _mockProviderService.ClearInteractions(); //NOTE: Clears any previously registered interactions before the test is run\n      _mockProviderServiceBaseUri = data.MockProviderServiceBaseUri;\n    }\n\n    [Fact]\n    public void OKResponse()\n    {\n      //Arrange\n      _mockProviderService\n        .Given(&quot;user token&quot;)\n        .UponReceiving(&quot;GET user token&quot;)\n        .With(new ProviderServiceRequest\n        {\n          Method = HttpVerb.Get,\n          Path = &quot;/token/1234&quot;,\n          Headers = new Dictionary&lt;string, object&gt;\n          {\n            { &quot;Accept&quot;, &quot;application/json, text/plain, */*&quot; }\n          }\n        })\n        .WillRespondWith(new ProviderServiceResponse\n        {\n          Status = 200,\n          Headers = new Dictionary&lt;string, object&gt;\n          {\n            { &quot;Content-Type&quot;, &quot;application/json&quot; }\n          },\n          Body = new //NOTE: Note the case sensitivity here, the body will be serialised as per the casing defined\n          {\n            token = &quot;bearer&quot;\n          }\n        }); //NOTE: WillRespondWith call must come last as it will register the interaction\n\n        var consumer = new SomethingApiClient(_mockProviderServiceBaseUri);\n\n      //Act\n      var result = consumer.GetSomething(&quot;tester&quot;);\n\n      //Assert\n      Assert.Equal(&quot;tester&quot;, result.id);\n\n      _mockProviderService.VerifyInteractions(); //NOTE: Verifies that interactions registered on the mock provider are called at least once\n    }\n  }\n}\n</code></pre>\n<p>ConsumerPact.cs</p>\n<pre><code>using PactNet;\nusing PactNet.Mocks.MockHttpService;\nusing System;\n\nnamespace PactTests.PactTests\n{\n  public class ConsumerPact : IDisposable\n  {\n    public IPactBuilder PactBuilder { get; private set; }\n    public IMockProviderService MockProviderService { get; private set; }\n\n    public int MockServerPort { get { return 1234; } }\n\n    public string MockProviderServiceBaseUri { get { return String.Format(&quot;http://localhost:{0}&quot;, MockServerPort); } }\n\n    public ConsumerPact()\n    {\n      // Pact configuration\n      var pactConfig = new PactConfig\n      {\n        SpecificationVersion = &quot;2.0.17&quot;,\n        PactDir = @&quot;Users/paulcarron/git/pact/pacts&quot;,\n        LogDir = @&quot;Users/paulcarron/git/pact/logs&quot;\n      };\n\n      PactBuilder = new PactBuilder(pactConfig);\n\n      PactBuilder\n        .ServiceConsumer(&quot;React&quot;)\n        .HasPactWith(&quot;token&quot;);\n\n      MockProviderService = PactBuilder.MockService(MockServerPort);\n\n    }\n\n    public void Dispose()\n    {\n      PactBuilder.Build();\n    }\n  }\n}\n</code></pre>\n<p>How do I do the <code>GET</code>?</p>\n",
+        "codigo": [
+            "js",
+            "const { get } = require('axios')\n\nmodule.exports = function () {\n    return get(`http://localhost:1234/token/1234`)\n}\n",
+            "const path = require(\"path\")\nconst chai = require(\"chai\")\nconst { Pact, Matchers } = require(\"@pact-foundation/pact\")\nconst chaiAsPromised = require(\"chai-as-promised\")\nconst expect = chai.expect\nchai.use(chaiAsPromised)\nconst { string } = Matchers\nconst get = require('../src/get')\n\ndescribe('Consumer Test', () => {\n    const provider = new Pact({\n        consumer: \"React\",\n        provider: \"token\",\n        port: 1234,\n        log: path.resolve(process.cwd(), 'logs', 'pact.log'),\n        dir: path.resolve(process.cwd(), 'pacts'),\n        logLevel: \"INFO\"\n    });\n\n    before(() => provider.setup()\n    .then(() => provider.addInteraction({\n        state: \"user token\",\n        uponReceiving: \"GET user token\",\n        withRequest: {\n            method: \"GET\",\n            path: \"/token/1234\",\n            headers: { Accept: \"application/json, text/plain, */*\" }\n        },\n        willRespondWith: {\n            headers: { \"Content-Type\": \"application/json\" },\n            status: 200,\n            body: { \"token\": string(\"bearer\") }\n        }\n    })))\n\n    it('OK response', () => {\n        get()\n        .then((response) => {\n            expect(response.statusText).to.be.equal('OK')\n        })\n    })\n\n    after(() => provider.finalize())\n})\n",
+            "js",
+            "GET",
+            "//using NUnit.Framework;\nusing System.Collections.Generic;\nusing PactNet;\nusing PactNet.Mocks.MockHttpService;\nusing PactNet.Mocks.MockHttpService.Models;\nusing Xunit;\n\nnamespace PactTests.PactTests\n{\n  public class ConsumerTest : IClassFixture<ConsumerPact>\n  {\n    private IMockProviderService _mockProviderService;\n    private string _mockProviderServiceBaseUri;\n\n    public ConsumerTest(ConsumerPact data)\n    {\n      _mockProviderService = data.MockProviderService;\n      _mockProviderService.ClearInteractions(); //NOTE: Clears any previously registered interactions before the test is run\n      _mockProviderServiceBaseUri = data.MockProviderServiceBaseUri;\n    }\n\n    [Fact]\n    public void OKResponse()\n    {\n      //Arrange\n      _mockProviderService\n        .Given(\"user token\")\n        .UponReceiving(\"GET user token\")\n        .With(new ProviderServiceRequest\n        {\n          Method = HttpVerb.Get,\n          Path = \"/token/1234\",\n          Headers = new Dictionary<string, object>\n          {\n            { \"Accept\", \"application/json, text/plain, */*\" }\n          }\n        })\n        .WillRespondWith(new ProviderServiceResponse\n        {\n          Status = 200,\n          Headers = new Dictionary<string, object>\n          {\n            { \"Content-Type\", \"application/json\" }\n          },\n          Body = new //NOTE: Note the case sensitivity here, the body will be serialised as per the casing defined\n          {\n            token = \"bearer\"\n          }\n        }); //NOTE: WillRespondWith call must come last as it will register the interaction\n\n        var consumer = new SomethingApiClient(_mockProviderServiceBaseUri);\n\n      //Act\n      var result = consumer.GetSomething(\"tester\");\n\n      //Assert\n      Assert.Equal(\"tester\", result.id);\n\n      _mockProviderService.VerifyInteractions(); //NOTE: Verifies that interactions registered on the mock provider are called at least once\n    }\n  }\n}\n",
+            "using PactNet;\nusing PactNet.Mocks.MockHttpService;\nusing System;\n\nnamespace PactTests.PactTests\n{\n  public class ConsumerPact : IDisposable\n  {\n    public IPactBuilder PactBuilder { get; private set; }\n    public IMockProviderService MockProviderService { get; private set; }\n\n    public int MockServerPort { get { return 1234; } }\n\n    public string MockProviderServiceBaseUri { get { return String.Format(\"http://localhost:{0}\", MockServerPort); } }\n\n    public ConsumerPact()\n    {\n      // Pact configuration\n      var pactConfig = new PactConfig\n      {\n        SpecificationVersion = \"2.0.17\",\n        PactDir = @\"Users/paulcarron/git/pact/pacts\",\n        LogDir = @\"Users/paulcarron/git/pact/logs\"\n      };\n\n      PactBuilder = new PactBuilder(pactConfig);\n\n      PactBuilder\n        .ServiceConsumer(\"React\")\n        .HasPactWith(\"token\");\n\n      MockProviderService = PactBuilder.MockService(MockServerPort);\n\n    }\n\n    public void Dispose()\n    {\n      PactBuilder.Build();\n    }\n  }\n}\n",
+            "GET"
+        ]
+    },
+    {
+        "titulo": "Pact CDC: Cleaning up older consumer and provider version from Broker periodically",
+        "score": 0,
+        "views": 232,
+        "respostas": 1,
+        "tags": [
+            "testing",
+            "pact",
+            "contract",
+            "pact-broker"
+        ],
+        "link": "https://stackoverflow.com/questions/65391985/pact-cdc-cleaning-up-older-consumer-and-provider-version-from-broker-periodical",
+        "conteudo_html": "<p>I have set up a pack broker locally and ran few iterations of consumer and provider.\nThe list of verified pact over few days has gone to 100 now.</p>\n<p>I am looking for options to clear the contracts and the verification results which are older than 15 days.</p>\n<p>Is there a way of bulk cleaning the contracts? Can this be set up like a cron job in the Broker?</p>\n<p>Can we set a retention period for the contracts and verification results?</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "Pact - contract testing - verify consumer and producer against contract",
+        "score": 0,
+        "views": 568,
+        "respostas": 1,
+        "tags": [
+            "testing",
+            "verify",
+            "pact",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/63409498/pact-contract-testing-verify-consumer-and-producer-against-contract",
+        "conteudo_html": "<p>I have made demo application for Pact-Contract testing. Following is the link, I referred. I have change few things out of that like patternmatcher and bodytype.\n<a href=\"https://www.javacodegeeks.com/2017/03/consumer-driven-testing-pact-spring-boot.html\" rel=\"nofollow noreferrer\">https://www.javacodegeeks.com/2017/03/consumer-driven-testing-pact-spring-boot.html</a></p>\n<p>I am able to publish pact from consumer and verify it from provider side.</p>\n<p>I have been asked to verify pact from consumer end as well.\nE.g. consumer posts following json to provider for creating new user.</p>\n<pre><code>  {\n  &quot;address&quot;: {\n    &quot;city&quot;: &quot;string&quot;,\n    &quot;houseNumber&quot;: 0,\n    &quot;postalCode&quot;: &quot;string&quot;,\n    &quot;street&quot;: &quot;string&quot;\n  },\n  &quot;name&quot;: &quot;string&quot;,\n  &quot;registrationId&quot;: 0,\n  &quot;surname&quot;: &quot;string&quot;\n}\n</code></pre>\n<p>But now consumer changes the model classes. (as it is also provider for some other service. it might be possible to get request to change change contract). Following is the new request json that will be generated.</p>\n<pre><code>{\n  &quot;address&quot;: {\n    &quot;city&quot;: &quot;string&quot;,\n    &quot;houseNumber&quot;: 0,\n    &quot;postalCode&quot;: &quot;string&quot;,\n    &quot;street&quot;: &quot;string&quot;\n  },\n  &quot;firstname&quot;: &quot;string&quot;,\n  &quot;registrationId&quot;: 0,\n  &quot;surname&quot;: &quot;string&quot;\n}\n</code></pre>\n<p>As the request object is changed. If I verify consumer against pact. It should fail.</p>\n<p>Problem: When I run mvn:verify from consumer, it is always OK. I want it to fail.</p>\n<p>P.S. Let me know if it is not correct way of doing it.</p>\n",
+        "codigo": [
+            "  {\n  \"address\": {\n    \"city\": \"string\",\n    \"houseNumber\": 0,\n    \"postalCode\": \"string\",\n    \"street\": \"string\"\n  },\n  \"name\": \"string\",\n  \"registrationId\": 0,\n  \"surname\": \"string\"\n}\n",
+            "{\n  \"address\": {\n    \"city\": \"string\",\n    \"houseNumber\": 0,\n    \"postalCode\": \"string\",\n    \"street\": \"string\"\n  },\n  \"firstname\": \"string\",\n  \"registrationId\": 0,\n  \"surname\": \"string\"\n}\n"
+        ]
+    },
+    {
+        "titulo": "How to trigger producer contract test automatically if consumer contract changes",
+        "score": 0,
+        "views": 167,
+        "respostas": 1,
+        "tags": [
+            "testing",
+            "pact",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/61002247/how-to-trigger-producer-contract-test-automatically-if-consumer-contract-changes",
+        "conteudo_html": "<p>If the consumer makes a change which can break the contract test can only be identified if producer is also build but if we don't build the producer the wrong consumer will be released to production.</p>\n\n<p>Is there an approach which can be followed to overcome these type of scenarios.</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "The artifact was found in the local repository but you have explicitly stated that it should be downloaded from a remote one&quot;",
+        "score": 0,
+        "views": 730,
+        "respostas": 1,
+        "tags": [
+            "spring-boot",
+            "testing",
+            "contract",
+            "spring-cloud-contract",
+            "aether"
+        ],
+        "link": "https://stackoverflow.com/questions/56030148/the-artifact-was-found-in-the-local-repository-but-you-have-explicitly-stated-th",
+        "conteudo_html": "<p>I have consumer project, which has spring cloud contract tests verifier,which needs to talk to the stubs jar in the remote repo. The setup for <code>stubsMode: LOCAL</code> works fine, but for remote it throws the following error.</p>\n\n<pre><code>Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalStateException: The artifact was found in the local repository but you have explicitly stated that it should be downloaded from a remote one\n    at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)\n    at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)\n    ... 43 more\nCaused by: java.lang.IllegalStateException: The artifact was found in the local repository but you have explicitly stated that it should be downloaded from a remote one\n</code></pre>\n\n<p>Consumer Side remote code:</p>\n\n<pre><code>`@RunWith(SpringRunner.class)\n@SpringBootTest(classes = RestClientConfig.class,\n        webEnvironment = SpringBootTest.WebEnvironment.MOCK)\n@AutoConfigureStubRunner(   repositoryRoot=\"https://nexus.com/nexus/content/repositories/sam-releases/com/sam/api/\",\n        ids = \"com.sam:api:+:stubs:8083\",\n        stubsMode = StubRunnerProperties.StubsMode.REMOTE\n)\n</code></pre>\n\n<p>pom.xml</p>\n\n<pre><code>&lt;spring-cloud.version&gt;Finchley.SR2&lt;/spring-cloud.version&gt;\n    &lt;spring-cloud-contract.version&gt;2.0.2.RELEASE&lt;/spring-cloud-contract-version&gt;\n</code></pre>\n\n<p>I need to use REMOTE repoUrl for the consumer project to talk to the producer stub jar.</p>\n",
+        "codigo": [
+            "stubsMode: LOCAL",
+            "Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.cloud.contract.stubrunner.BatchStubRunner]: Factory method 'batchStubRunner' threw exception; nested exception is java.lang.IllegalStateException: The artifact was found in the local repository but you have explicitly stated that it should be downloaded from a remote one\n    at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)\n    at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)\n    ... 43 more\nCaused by: java.lang.IllegalStateException: The artifact was found in the local repository but you have explicitly stated that it should be downloaded from a remote one\n",
+            "`@RunWith(SpringRunner.class)\n@SpringBootTest(classes = RestClientConfig.class,\n        webEnvironment = SpringBootTest.WebEnvironment.MOCK)\n@AutoConfigureStubRunner(   repositoryRoot=\"https://nexus.com/nexus/content/repositories/sam-releases/com/sam/api/\",\n        ids = \"com.sam:api:+:stubs:8083\",\n        stubsMode = StubRunnerProperties.StubsMode.REMOTE\n)\n",
+            "<spring-cloud.version>Finchley.SR2</spring-cloud.version>\n    <spring-cloud-contract.version>2.0.2.RELEASE</spring-cloud-contract-version>\n"
+        ]
+    },
+    {
+        "titulo": "Consumer Driven Contract Tests for C++ APIs",
+        "score": 2,
+        "views": 698,
+        "respostas": 1,
+        "tags": [
+            "c++",
+            "testing",
+            "pact",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/55820196/consumer-driven-contract-tests-for-c-apis",
+        "conteudo_html": "<p>I am developing a static C++ library that has some Public APIs. \nI have to implement Consumer Driven Contract for the APIs that the library provides.\nBut in my case I have to provide the contract to the consumers on which they will agree upon. </p>\n\n<p>The inspiration of implementing the Contract based testing came from PACT (<a href=\"https://docs.pact.io/\" rel=\"nofollow noreferrer\">https://docs.pact.io/</a>). The contract in PACT is in form of JSON file and it is mainly based on REST and http responses.</p>\n\n<p>If I have to implement the contract based testing for C++ APIs. Then what is the best approach. I could see boost has Design By Contract, but it is more like Assertions but there is no contract defined in a file like PACT. (<a href=\"https://www.boost.org/doc/libs/develop/libs/contract/doc/html/index.html\" rel=\"nofollow noreferrer\">https://www.boost.org/doc/libs/develop/libs/contract/doc/html/index.html</a>)</p>\n\n<p>Is there any way that the contract can be defined in a file and all the APIs can be tested. The main purpose of this is to test in isolation.</p>\n\n<p>Could you please share some inputs on to implement the contracts defined in a file and write a test program for these contracts.</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "how to pass url in httptarget method while using PACT",
+        "score": 0,
+        "views": 1066,
+        "respostas": 1,
+        "tags": [
+            "java",
+            "testing",
+            "junit",
+            "pact",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/54157523/how-to-pass-url-in-httptarget-method-while-using-pact",
+        "conteudo_html": "<p>while creating pact verification test i am using httpTarget Method. but the problem is my service dont have a port value. how can we run this? please advise.\nService URL=<a href=\"http://services.groupkt.com/country/get/iso3code/IND\" rel=\"nofollow noreferrer\">http://services.groupkt.com/country/get/iso3code/IND</a></p>\n\n<p>below is my verification test.\npackage se.ff.bsv;</p>\n\n<pre><code>import au.com.dius.pact.provider.junit.PactRunner;\nimport au.com.dius.pact.provider.junit.Provider;\nimport au.com.dius.pact.provider.junit.State;\nimport au.com.dius.pact.provider.junit.loader.PactFolder;\nimport au.com.dius.pact.provider.junit.loader.PactUrl;\nimport au.com.dius.pact.provider.junit.target.HttpTarget;\nimport au.com.dius.pact.provider.junit.target.Target;\nimport au.com.dius.pact.provider.junit.target.TestTarget;\nimport org.junit.Before;\nimport org.junit.BeforeClass;\nimport org.junit.ClassRule;\nimport org.junit.runner.RunWith;\n\nimport java.net.URL;\nimport java.util.Map;\n\n@RunWith(PactRunner.class) // Say JUnit to run tests with custom Runner\n@Provider(\"getCountryService\") // Set up name of tested provider\n@PactFolder(\"../pacts\") // Point where to find pacts (See also section Pacts source in documentation)\n\n//@PactUrl(urls = {\"http://services.groupkt.com/country/get/iso3code/IND\"} )\n\npublic class getCountryContractTest {\n\n    @State(\"There is a country with alpha2_code as IN having name as India\") // Method will be run before testing\n                                                                                // interactions that require \"with-data\"\n                                                                                // state\n    public void hammerSmith() {\n        System.out.println(\"There is a country with alpha2_code as IN having name as India\");\n    }\n\n    @TestTarget // Annotation denotes Target that will be used for tests\n\n    //public final Target target = new HttpTarget(8111);// Out-of-the-box implementation of Target (for more information take a look at Test Target section)\n    public final Target target = new HttpTarget(\"http\", \"services.groupkt.com\",);\n\n}\n</code></pre>\n",
+        "codigo": [
+            "import au.com.dius.pact.provider.junit.PactRunner;\nimport au.com.dius.pact.provider.junit.Provider;\nimport au.com.dius.pact.provider.junit.State;\nimport au.com.dius.pact.provider.junit.loader.PactFolder;\nimport au.com.dius.pact.provider.junit.loader.PactUrl;\nimport au.com.dius.pact.provider.junit.target.HttpTarget;\nimport au.com.dius.pact.provider.junit.target.Target;\nimport au.com.dius.pact.provider.junit.target.TestTarget;\nimport org.junit.Before;\nimport org.junit.BeforeClass;\nimport org.junit.ClassRule;\nimport org.junit.runner.RunWith;\n\nimport java.net.URL;\nimport java.util.Map;\n\n@RunWith(PactRunner.class) // Say JUnit to run tests with custom Runner\n@Provider(\"getCountryService\") // Set up name of tested provider\n@PactFolder(\"../pacts\") // Point where to find pacts (See also section Pacts source in documentation)\n\n//@PactUrl(urls = {\"http://services.groupkt.com/country/get/iso3code/IND\"} )\n\npublic class getCountryContractTest {\n\n    @State(\"There is a country with alpha2_code as IN having name as India\") // Method will be run before testing\n                                                                                // interactions that require \"with-data\"\n                                                                                // state\n    public void hammerSmith() {\n        System.out.println(\"There is a country with alpha2_code as IN having name as India\");\n    }\n\n    @TestTarget // Annotation denotes Target that will be used for tests\n\n    //public final Target target = new HttpTarget(8111);// Out-of-the-box implementation of Target (for more information take a look at Test Target section)\n    public final Target target = new HttpTarget(\"http\", \"services.groupkt.com\",);\n\n}\n"
+        ]
+    },
+    {
+        "titulo": "spring cloud contracts gradle runs tests every time",
+        "score": 0,
+        "views": 223,
+        "respostas": 1,
+        "tags": [
+            "spring",
+            "testing",
+            "gradle",
+            "cloud",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/52924648/spring-cloud-contracts-gradle-runs-tests-every-time",
+        "conteudo_html": "<p>Normally when you run gradle test twice you will get UP-TO-DATE the second time.\nMy problem is that when using spring cloud contracts, generated-test-sources are rebuild each time so all tests are run again. It looks like gradle runs task :generateContractTests every time. Why ? Can I do something with that ?</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "In truffle test using js, how to set the parameters after the `contract `?",
+        "score": 2,
+        "views": 839,
+        "respostas": 1,
+        "tags": [
+            "testing",
+            "ethereum",
+            "solidity",
+            "contract",
+            "truffle"
+        ],
+        "link": "https://stackoverflow.com/questions/50793521/in-truffle-test-using-js-how-to-set-the-parameters-after-the-contract",
+        "conteudo_html": "<p>Such as <code>WhitelistedCrowdsale.test.js</code> in <code>openzeppelin-solidity</code>:</p>\n\n<p><code>contract('WhitelistedCrowdsale', function ([_, wallet, authorized, unauthorized, anotherAuthorized]) { ... }</code> in line 12.</p>\n\n<p>why the parametes of <code>function(...)</code> is <code>_, wallet, authorized, unauthorized, anotherAuthorized</code>? Can they be other things? why?</p>\n\n<p>Thanks!</p>\n",
+        "codigo": [
+            "WhitelistedCrowdsale.test.js",
+            "openzeppelin-solidity",
+            "contract('WhitelistedCrowdsale', function ([_, wallet, authorized, unauthorized, anotherAuthorized]) { ... }",
+            "function(...)",
+            "_, wallet, authorized, unauthorized, anotherAuthorized"
+        ]
+    },
+    {
+        "titulo": "pact-jvm-server Complete returns 400",
+        "score": 1,
+        "views": 550,
+        "respostas": 0,
+        "tags": [
+            "java",
+            "testing",
+            "contract",
+            "pact",
+            "pact-jvm"
+        ],
+        "link": "https://stackoverflow.com/questions/45409660/pact-jvm-server-complete-returns-400",
+        "conteudo_html": "<p>I've got a <a href=\"https://github.com/DiUS/pact-jvm/tree/master/pact-jvm-server\" rel=\"nofollow noreferrer\">pact-jvm-server</a> instance in Docker and when ever I call the /create method it creates a stub server and returns the correct responses. But now when I try to delete the stub server on the selected port with /complete call and port in body of the POST request it always returns 400 even though it deletes the stub service on provided port.</p>\n\n<p>Any help would be appreciated.</p>\n\n<p>Docker logs:</p>\n\n<pre><code>b51ce9 starting unfiltered app at 0.0.0.0 on port 8080\n08:26:44.847 [main] DEBUG i.n.u.i.l.InternalLoggerFactory - Using SLF4J as                 the default logging framework\n08:26:44.853 [main] DEBUG i.n.c.MultithreadEventLoopGroup - -\nDio.netty.eventLoopThreads: 408:26:44.860 [main] DEBUG i.n.util.internal.PlatformDependent0 - \njava.nio.Buffer.address: available\n08:26:44.860 [main] DEBUG i.n.util.internal.PlatformDependent0 sun.misc.Unsafe.theUnsafe: available\n08:26:44.861 [main] DEBUG i.n.util.internal.PlatformDependent0 -         sun.misc.Unsafe.copyMemory: available\n08:26:44.861 [main] DEBUG i.n.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: true\n08:26:44.913 [main] DEBUG i.n.util.internal.PlatformDependent - UID: 0\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - Java version: 8\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noUnsafe: false\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - sun.misc.Unsafe: available\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noJavassist: false\n08:26:44.916 [main] DEBUG i.n.util.internal.PlatformDependent - Javassist: unavailable\n08:26:44.916 [main] DEBUG i.n.util.internal.PlatformDependent - You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.\n08:26:44.916 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.tmpdir: /tmp (java.io.tmpdir)\n08:26:44.917 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)\n08:26:44.917 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false\n08:26:44.938 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false\n08:26:44.938 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512\n08:26:44.984 [main] DEBUG i.n.util.internal.ThreadLocalRandom - -Dio.netty.initialSeedUniquifier: 0x1f1143a58dddfa74 (took 20 ms)\n08:26:45.006 [main] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: unpooled\n08:26:45.006 [main] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 65536\n08:26:45.009 [main] DEBUG io.netty.util.NetUtil - Loopback interface: lo (lo, 127.0.0.1)\n08:26:45.009 [main] DEBUG io.netty.util.NetUtil - /proc/sys/net/core/somaxconn: 128\n08:26:46.383 [nioEventLoopGroup-3-1] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetectionLevel: simple\n08:26:46.405 [nioEventLoopGroup-3-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.maxCapacity.default: 262144\n08:26:46.409 [nioEventLoopGroup-3-1] DEBUG io.netty.util.internal.Cleaner0 - java.nio.ByteBuffer.cleaner(): available\n08:27:08.830 [nioEventLoopGroup-3-2] DEBUG au.com.dius.pact.server.Create$ - path=/create\n08:27:08.830 [nioEventLoopGroup-3-2] DEBUG au.com.dius.pact.server.Create$ - query={state=[HarryPotter]}\n08:27:08.871 [nioEventLoopGroup-3-2] DEBUG au.com.dius.pact.server.Create$ - au.com.dius.pact.model.OptionalBody(PRESENT, {\n\"provider\": {\n    \"name\": \"microservices-simple-catalogue\"\n},\n\"consumer\": {\n    \"name\": \"microservices-simple-orders\"\n},\n\"interactions\": [\n    {\n        \"description\": \"catalogue test interaction\",\n        \"request\": {\n            \"method\": \"GET\",\n            \"path\": \"/books/1\"\n        },\n        \"response\": {\n            \"status\": 200,\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"bookOrders\": [\n\n                ],\n                \"author\": \"J.K. Rowling\",\n                \"description\": \"Books about a wizard\",\n                \"id\": 1,\n                \"title\": \"Harry Potter\"\n            },\n            \"matchingRules\": {\n                \"body\": {\n                    \"$.bookOrders\": {\n                        \"matchers\": [\n                            {\n                                \"match\": \"type\",\n                                \"min\": 0\n                            }\n                        ],\n                        \"combine\": \"AND\"\n                    }\n                }\n            }\n        },\n        \"providerStates\": [\n            {\n                \"name\": \"test state for returning Harry Potter book\"\n            }\n        ]\n    }\n],\n\"metadata\": {\n    \"pact-specification\": {\n        \"version\": \"3.0.0\"\n    },\n    \"pact-jvm\": {\n        \"version\": \"3.5.1\"\n    }\n }\n})\n</code></pre>\n\n<p>If I call it over the curl:</p>\n\n<pre><code>$ curl -v -d '{\"port\":20004}' localhost:8080/complete\n* timeout on name lookup is not supported\n*   Trying ::1...\n* TCP_NODELAY set\n% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                             Dload  Upload   Total   Spent    Left  Speed\n0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to localhost (::1) port 8080 (#0)\n&gt; POST /complete HTTP/1.1\n&gt; Host: localhost:8080\n&gt; User-Agent: curl/7.51.0\n&gt; Accept: */*\n&gt; Content-Length: 14\n&gt; Content-Type: application/x-www-form-urlencoded\n&gt;\n} [14 bytes data]\n* upload completely sent off: 14 out of 14 bytes\n&lt; HTTP/1.1 400 Bad Request\n&lt; Content-Type: application/json\n&lt; Connection: keep-alive\n&lt; Content-Length: 613\n&lt;\n{ [613 bytes data]\n* Curl_http_done: called premature == 0\n100   627  100   613  100    14  40866    933 --:--:-- --:--:-- --:--:--  598k{\"error\": \"Pact verification failed for the following reasons:\n\nThe following requests were not received:\nInteraction: catalogue test interaction\n    in state None\nrequest:\n    method: GET\n    path: /books/1\n    query: null\n    headers: null\n    matchers: null\n    body: au.com.dius.pact.model.OptionalBody(MISSING, null)\n\nresponse:\n    status: 200\n    headers: [Content-Type:application/json]\n    matchers: [body:[$.bookOrders:[combine:AND, matchers:[[match:type, min:0]]]]]\n    body: au.com.dius.pact.model.OptionalBody(PRESENT, {\"author\":\"J.K. Rowling\",\"bookOrders\":[],\"description\":\"Books about a wizard\",\"id\":1,\"title\":\"Harry Potter\"})\"}\n* Connection #0 to host localhost left intact\n</code></pre>\n",
+        "codigo": [
+            "b51ce9 starting unfiltered app at 0.0.0.0 on port 8080\n08:26:44.847 [main] DEBUG i.n.u.i.l.InternalLoggerFactory - Using SLF4J as                 the default logging framework\n08:26:44.853 [main] DEBUG i.n.c.MultithreadEventLoopGroup - -\nDio.netty.eventLoopThreads: 408:26:44.860 [main] DEBUG i.n.util.internal.PlatformDependent0 - \njava.nio.Buffer.address: available\n08:26:44.860 [main] DEBUG i.n.util.internal.PlatformDependent0 sun.misc.Unsafe.theUnsafe: available\n08:26:44.861 [main] DEBUG i.n.util.internal.PlatformDependent0 -         sun.misc.Unsafe.copyMemory: available\n08:26:44.861 [main] DEBUG i.n.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: true\n08:26:44.913 [main] DEBUG i.n.util.internal.PlatformDependent - UID: 0\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - Java version: 8\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noUnsafe: false\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - sun.misc.Unsafe: available\n08:26:44.914 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noJavassist: false\n08:26:44.916 [main] DEBUG i.n.util.internal.PlatformDependent - Javassist: unavailable\n08:26:44.916 [main] DEBUG i.n.util.internal.PlatformDependent - You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.\n08:26:44.916 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.tmpdir: /tmp (java.io.tmpdir)\n08:26:44.917 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)\n08:26:44.917 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false\n08:26:44.938 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false\n08:26:44.938 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512\n08:26:44.984 [main] DEBUG i.n.util.internal.ThreadLocalRandom - -Dio.netty.initialSeedUniquifier: 0x1f1143a58dddfa74 (took 20 ms)\n08:26:45.006 [main] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: unpooled\n08:26:45.006 [main] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 65536\n08:26:45.009 [main] DEBUG io.netty.util.NetUtil - Loopback interface: lo (lo, 127.0.0.1)\n08:26:45.009 [main] DEBUG io.netty.util.NetUtil - /proc/sys/net/core/somaxconn: 128\n08:26:46.383 [nioEventLoopGroup-3-1] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetectionLevel: simple\n08:26:46.405 [nioEventLoopGroup-3-1] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.maxCapacity.default: 262144\n08:26:46.409 [nioEventLoopGroup-3-1] DEBUG io.netty.util.internal.Cleaner0 - java.nio.ByteBuffer.cleaner(): available\n08:27:08.830 [nioEventLoopGroup-3-2] DEBUG au.com.dius.pact.server.Create$ - path=/create\n08:27:08.830 [nioEventLoopGroup-3-2] DEBUG au.com.dius.pact.server.Create$ - query={state=[HarryPotter]}\n08:27:08.871 [nioEventLoopGroup-3-2] DEBUG au.com.dius.pact.server.Create$ - au.com.dius.pact.model.OptionalBody(PRESENT, {\n\"provider\": {\n    \"name\": \"microservices-simple-catalogue\"\n},\n\"consumer\": {\n    \"name\": \"microservices-simple-orders\"\n},\n\"interactions\": [\n    {\n        \"description\": \"catalogue test interaction\",\n        \"request\": {\n            \"method\": \"GET\",\n            \"path\": \"/books/1\"\n        },\n        \"response\": {\n            \"status\": 200,\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"bookOrders\": [\n\n                ],\n                \"author\": \"J.K. Rowling\",\n                \"description\": \"Books about a wizard\",\n                \"id\": 1,\n                \"title\": \"Harry Potter\"\n            },\n            \"matchingRules\": {\n                \"body\": {\n                    \"$.bookOrders\": {\n                        \"matchers\": [\n                            {\n                                \"match\": \"type\",\n                                \"min\": 0\n                            }\n                        ],\n                        \"combine\": \"AND\"\n                    }\n                }\n            }\n        },\n        \"providerStates\": [\n            {\n                \"name\": \"test state for returning Harry Potter book\"\n            }\n        ]\n    }\n],\n\"metadata\": {\n    \"pact-specification\": {\n        \"version\": \"3.0.0\"\n    },\n    \"pact-jvm\": {\n        \"version\": \"3.5.1\"\n    }\n }\n})\n",
+            "$ curl -v -d '{\"port\":20004}' localhost:8080/complete\n* timeout on name lookup is not supported\n*   Trying ::1...\n* TCP_NODELAY set\n% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                             Dload  Upload   Total   Spent    Left  Speed\n0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to localhost (::1) port 8080 (#0)\n> POST /complete HTTP/1.1\n> Host: localhost:8080\n> User-Agent: curl/7.51.0\n> Accept: */*\n> Content-Length: 14\n> Content-Type: application/x-www-form-urlencoded\n>\n} [14 bytes data]\n* upload completely sent off: 14 out of 14 bytes\n< HTTP/1.1 400 Bad Request\n< Content-Type: application/json\n< Connection: keep-alive\n< Content-Length: 613\n<\n{ [613 bytes data]\n* Curl_http_done: called premature == 0\n100   627  100   613  100    14  40866    933 --:--:-- --:--:-- --:--:--  598k{\"error\": \"Pact verification failed for the following reasons:\n\nThe following requests were not received:\nInteraction: catalogue test interaction\n    in state None\nrequest:\n    method: GET\n    path: /books/1\n    query: null\n    headers: null\n    matchers: null\n    body: au.com.dius.pact.model.OptionalBody(MISSING, null)\n\nresponse:\n    status: 200\n    headers: [Content-Type:application/json]\n    matchers: [body:[$.bookOrders:[combine:AND, matchers:[[match:type, min:0]]]]]\n    body: au.com.dius.pact.model.OptionalBody(PRESENT, {\"author\":\"J.K. Rowling\",\"bookOrders\":[],\"description\":\"Books about a wizard\",\"id\":1,\"title\":\"Harry Potter\"})\"}\n* Connection #0 to host localhost left intact\n"
+        ]
+    },
+    {
+        "titulo": "Contract Testing with provider / producer code that we do not own (third party)",
+        "score": 1,
+        "views": 1339,
+        "respostas": 1,
+        "tags": [
+            "database",
+            "rest",
+            "testing",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/38834965/contract-testing-with-provider-producer-code-that-we-do-not-own-third-party",
+        "conteudo_html": "<p>I have a question around testing! As of now, I'm in a unique situation where the software I am writing is going out to a third party vendor and storing some data. In this situation, writing a test to confirm that that data is posted successfully means using a production endpoint...which I doubt is a smart way to write things.</p>\n\n<p>In this situation, no one seems to have a good solution for ensuring the endpoint works other then asking the third party for a dummy/test setup. I was wondering if anyone had a better idea of how to perform this sort of interaction. How do you write an efficient contract test when you don't OWN a bit of your codebase?</p>\n\n<p>Please and thank ya :D</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "Django, unit test for SOA style sites without data contract",
+        "score": 1,
+        "views": 125,
+        "respostas": 2,
+        "tags": [
+            "django",
+            "testing",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/12205655/django-unit-test-for-soa-style-sites-without-data-contract",
+        "conteudo_html": "<p>Let's say I have 2 django projects within the company, A and B, B consumes data from A via a restful API, and it doesn't have WADLs</p>\n\n<p>Originally my unit test (more like a functional test) consumes data directly from A, but it poses a lot of issues to run in integration server like Jenkins.</p>\n\n<p>To solve it, I will need to create some fake data to feed into project B (you can say this is the proper way of unit testing).</p>\n\n<p>Now another problem raised is, A might change the critical data structure and B continues to pass unit tests with mocked data.</p>\n\n<p>So before I go ahead do anything, I would like to ask: how would you do it?</p>\n",
+        "codigo": []
+    },
+    {
+        "titulo": "Removing the &quot;integration test scam&quot; - Understanding collaboration and contract tests",
+        "score": 9,
+        "views": 1694,
+        "respostas": 2,
+        "tags": [
+            "unit-testing",
+            "testing",
+            "integration-testing",
+            "collaboration",
+            "contract"
+        ],
+        "link": "https://stackoverflow.com/questions/9276337/removing-the-integration-test-scam-understanding-collaboration-and-contract",
+        "conteudo_html": "<p>I've recently watched <a href=\"http://www.infoq.com/presentations/integration-tests-scam\" rel=\"noreferrer\">Integration Tests are a Scam</a> by J. B. Rainsberger and am now looking for more material on the subject. I have to say, I'm shocked by how much we're doing wrong, (i.e. integration testing when we should unit test), intrigued by the concepts described by Rainsberger but also confused about how to apply them. I would like to have more of the described <strong>collaboration tests and contract tests</strong> but I don't know where to start.</p>\n\n<p>The only things that got stuck in my mind are the 4 questions the tests need to ask:</p>\n\n<p><strong>Side A:</strong></p>\n\n<pre><code>Do I ask the right question?\nCan I deal with the answer?\n</code></pre>\n\n<p><strong>Side B:</strong></p>\n\n<pre><code>Can I answer a question?\nDo I answer correctly?\n</code></pre>\n\n<p>But how do I apply this to some random method in my application stack? </p>\n\n<p>Is there a book or a tutorial or example out there that takes a real world example and applies these ideas of isolated micro tests?\nIdeally the example uses Java, C# or C++.</p>\n\n<p>Any literature that deals with these concepts in general and helps me understand them better would be appreciated. </p>\n\n<p>Also if there are forums out there where I can ask more detailed questions about how to go about correctly unit testing and maybe even refactoring existing code and post examples would be nice.</p>\n\n<p>Thanks!</p>\n",
+        "codigo": [
+            "Do I ask the right question?\nCan I deal with the answer?\n",
+            "Can I answer a question?\nDo I answer correctly?\n"
+        ]
+    }
+]

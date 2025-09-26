@@ -12,7 +12,7 @@ API_KEY = "rl_Rzzb6ghSHRGYESZAr8ANM78QX"
 
 params = {
     "site": "stackoverflow",
-    "tagged": "contract;testing",  # tags desejadas
+    "tagged": "integration;testing",  # tags desejadas
     "pagesize": 100,          
     "order": "desc",
     "sort": "creation",       # pode mudar para "votes"
@@ -61,7 +61,7 @@ while True:
     time.sleep(1.2)  # delay para respeitar rate limit
 
 # Salvar em JSON
-with open("posts_contractTesting_tests.json", "w", encoding="utf-8") as f:
+with open("posts_js_tests.json", "w", encoding="utf-8") as f:
     json.dump(all_results, f, indent=4, ensure_ascii=False)
 
-print(f"\n✅ Total de {len(all_results)} perguntas salvas em posts_contractTesting_tests.json")
+print(f"\n✅ Total de {len(all_results)} perguntas salvas em posts_js_tests.json")
